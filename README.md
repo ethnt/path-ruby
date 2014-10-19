@@ -21,9 +21,18 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
+# First create a client with your client_id and client_secret.
 client = Path::Client.new(client_id: 'foobar', client_secret: 'barfoo')
 
+# Redirect your user to the auth URL and it'll come back with an auth code.
 client.auth_url # => https://partner.path.com/oauth2/authenticat?response_type=code&client_id=foobar
+
+# Exchange your code for an access token and you're all set.
+client.access_token!('code')
+
+# Now, make requests.
+client.user # => #<Hash>
+client.add_moment('thought', { thought: 'Hello!', private: true })
 ```
 
 ## Contributing
